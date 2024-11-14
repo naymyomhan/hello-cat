@@ -1,0 +1,29 @@
+{
+    "name": "naymyomhan/hello-cat",
+    "description": "Package to get random cat images from internet 😺",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Naymyomhan\\HelloCat\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Nay Myo Mhan",
+            "email": "naymyomhan@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "laravel/framework": "^8.0|^9.0|^10.0",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "extra": {
+        "laravel":{
+            "providers": [
+                "Naymyomhan\\HelloCat\\HelloCatServiceProvider"
+            ]
+        }
+    }
+}
