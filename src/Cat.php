@@ -8,32 +8,56 @@ use Illuminate\Support\Facades\Log;
 
 class Cat
 {
+    protected $client;
+
+    public function __construct()
+    {
+        $this->client = new Client([
+            'base_uri' => 'https://api.thecatapi.com/v1/',
+        ]);
+    }
+
+    /**
+     * Fetch a random cat image.
+     *
+     * @return array
+     */
     public function image()
     {
-        $client = new Client(
-            [
-                'base_uri' => 'https://api.thecatapi.com/v1/',
-            ]
-        );
-
         try {
-            $response = $client->request('GET', 'images/search');
-            $body = json_decode($response->getBody()->getContents());
-            return response()->json([
+            $response = $this->client->request('GET', 'images/search');
+            $body = json_decode($response->getBody()->getContents(), true);
+            
+            return [
                 'success' => true,
                 'message' => $response->getReasonPhrase(),
                 'data' => [
-                    'image' => $body[0]->url,
-                    'width' => $body[0]->width,
-                    'height' => $body[0]->height,
-                ]
-            ], 200);
+                    'image' => $body[0]['url'],
+                    'width' => $body[0]['width'],
+                    'height' => $body[0]['height'],
+                ],
+            ];
         } catch (ClientException $e) {
-            Log::error($e->getMessage());
-            return response()->json([
-                'success' => false,
-                'message' => "Something went wrong",
-            ], 500);
+            Log::error('Cat API request failed: ' . $e->getMessage());
+            return $this->handleError("Something went wrong while fetching the cat image.");
+        } catch (\Exception $e) {
+            Log::error('Unexpected error: ' . $e->getMessage());
+            return $this->handleError("An unexpected error occurred.");
         }
+    }
+
+    /**
+     * Handle error response.
+     *
+     * @param string $message
+     * @return array
+     */
+    protected function handleError(string $message)
+    {
+        return [
+            'success' => false,
+            'message' => $message,
+            'data' => null,
+        ];
     }
 }
