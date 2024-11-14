@@ -15,7 +15,7 @@ A simple Laravel package to fetch random cat images from [The Cat API](https://t
 To install the package via Composer, use:
 
 ```bash
-composer  require  naymyomhan/hello-cat
+composer require naymyomhan/hello-cat
 ```
 
 After installation, publish the configuration file to set up your API key:
@@ -36,61 +36,70 @@ CAT_API_KEY=your-cat-api-key-here
 This package provides two main classes: `Cat` and `CatGroup`.
 
 ### 1. Get a Single Random Cat Image
+
 You can use the `Cat` class to fetch a single random cat image.
 
-    use Naymyomhan\HelloCat\Cat;
-    
-    $cat = new Cat(); 
-    $response = $cat->image();
+```php
+use Naymyomhan\HelloCat\Cat;
+
+$cat = new Cat(); 
+$response = $cat->image();
+```
 
 Example JSON Response
-
-    {
-        "success": true,
-        "message": "OK",
-        "data": {
-            "image": "https://cdn2.thecatapi.com/images/abc.jpg",
-            "width": 500,
-            "height": 400
-        }
+```json
+{
+    "success": true,
+    "message": "OK",
+    "data": {
+        "image": "https://cdn2.thecatapi.com/images/abc.jpg",
+        "width": 500,
+        "height": 400
     }
+}
+```
 
 ### 2. Get Multiple Random Cat Images
 The `CatGroup` class allows you to retrieve multiple random cat images with optional breed filtering.
+```php
+use Naymyomhan\HelloCat\CatGroup;
 
-    use Naymyomhan\HelloCat\CatGroup;
-    
-    $catGroup = new CatGroup();
-    $response = $catGroup->images(5, 'beng'); // Fetch 5 images of 'beng' breed
+$catGroup = new CatGroup();
+$response = $catGroup->images(5, 'beng'); // Fetch 5 images of 'beng' breed
+```
 
 Example JSON Response
 
-    {
-        "success": true,
-        "message": "OK",
-        "data": [
-            {
-                "url": "https://cdn2.thecatapi.com/images/abc.jpg",
-                "width": 500,
-                "height": 400
-            },
-            {
-                "url": "https://cdn2.thecatapi.com/images/xyz.jpg",
-                "width": 600,
-                "height": 450
-            }
-            // Additional images
-        ]
-    }
+```json
+{
+    "success": true,
+    "message": "OK",
+    "data": [
+        {
+            "url": "https://cdn2.thecatapi.com/images/abc.jpg",
+            "width": 500,
+            "height": 400
+        },
+        {
+            "url": "https://cdn2.thecatapi.com/images/xyz.jpg",
+            "width": 600,
+            "height": 450
+        }
+        // Additional images
+    ]
+}
+```
+
+    
 
 ### Error Handling
 The `CatGroup` class allows you to retrieve multiple random cat images with optional breed filtering.
-
-    {
-        "success": false,
-        "message": "Something went wrong"
-    }
-
+```json   
+{
+    "success": false,
+    "message": "Something went wrong"
+}
+```
 ## License
 
 This package is open-source software licensed under the MIT license.
