@@ -6,9 +6,11 @@
 </p>
 
 
-A simple Laravel package to fetch random cat images from [The Cat API](https://thecatapi.com/). This package provides two main functions to retrieve a single cat image or multiple images with optional breed filters.
+A simple Laravel package to get random cat images [The Cat API](https://thecatapi.com/). This package provides two main functions to retrieve a single cat image or multiple images with optional breed filters.
 
-  
+<p align="center">
+  <img src="resources/screenshot.png" alt="Hello Cat Logo" width="800px"/>
+</p>
 
 ## Installation
 
@@ -31,7 +33,7 @@ Set your `CAT_API_KEY` in the `.env` file:(optional)
 CAT_API_KEY=your-cat-api-key-here
 ```
 
-## Installation
+## Usage
 
 This package provides two main classes: `Cat` and `CatGroup`.
 
@@ -91,6 +93,8 @@ Example JSON Response
 ```
 
     
+### Credits
+This package uses [The Cat API](https://thecatapi.com/) to fetch random cat images. A big thank you to them for providing such an awesome service!
 
 ### Error Handling
 The `CatGroup` class allows you to retrieve multiple random cat images with optional breed filtering.
