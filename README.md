@@ -6,7 +6,7 @@
 </p>
 
 
-A simple Laravel package to get random cat images [The Cat API](https://thecatapi.com/). This package provides two main functions to retrieve a single cat image or multiple images with optional breed filters.
+A simple Laravel package to get random cat images. This package provides two main functions to retrieve a single cat image or multiple images with optional breed filters.
 
 <p align="center">
   <img src="resources/screenshot.png" alt="Hello Cat Logo" width="800px"/>
